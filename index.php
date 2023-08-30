@@ -1,5 +1,4 @@
 <?php
-        echo "hello world" ;
-
-
-        ?>
+      require "./app/Models/Students.php";
+      
+?>
