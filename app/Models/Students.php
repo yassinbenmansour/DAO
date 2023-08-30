@@ -6,15 +6,11 @@ class Student {
     private $age;
     private $email;
     private $password;
+    private static $db;
 
     public function getId()
     {
         return $this->id;
-    }
-
-    public function setId($id)
-    {
-        $this->id = $id;
     }
 
     public function getNom()
@@ -69,17 +65,32 @@ class Student {
 
     public function create()
     {
-
+        $sql = static::databaseConnection()->prepare("INSERT INTO student (nom, prenom, age, email, password) VALUES (?, ?, ?, ?, ?)");
+        return $sql->execute([
+            $this->nom,
+            $this->prenom,
+            $this->age,
+            $this->email,
+            $this->password,
+        ]);
     }
 
     public function edit()
     {
-
+        // Implement edit functionality
     }
 
     public function destroy()
     {
+        // Implement destroy functionality
+    }
 
+    public static function databaseConnection()
+    {
+        if (is_null(static::$db)) {
+            static::$db = new PDO('mysql:dbname=studentsApp;host=localhost', "root", "");
+        }
+        return static::$db;
     }
 }
 ?>
