@@ -75,9 +75,17 @@
             ]);
         }
 
-        public function edit()
+        public function Update($id)
         {
-            // Implement edit functionality
+            $sql = static::databaseConnection()->prepare("UPDATE student SET nom = ?,prenom = ?,age = ?,email = ?,password = ? WHERE  id = ?");
+            return $sql->execute([
+                $this->nom,
+                $this->prenom,
+                $this->age,
+                $this->email,
+                $this->password,
+                $id
+            ]);
         }
 
         public function destroy($id)
