@@ -90,5 +90,15 @@
           $sql->excute([$id]);
         }
 
+        public function search($id){
+            $sql = static::databaseConnection()->prepare("SELECT * FROM student WHERE id LIKE ?");
+            $sql->execute([$id]) ;
+        }
 
+        public function All(){
+            $sql = static::databaseConnection()->prepare('SELECT * FROM student');
+            $sql->excute([]);
+        }
+
+        
     }
