@@ -12,7 +12,7 @@ class model
         return $this->id;
     }
 
-    
+
 
     public static function databaseConnection()
     {
