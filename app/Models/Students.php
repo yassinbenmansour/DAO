@@ -87,17 +87,17 @@
         public function destroy($id)
         {
           $sql = static::databaseConnection()->prepare("DELETE FROM student WHERE id = ? ");
-          $sql->excute([$id]);
+          $sql->execute([$id]);
         }
 
         public function search($id){
             $sql = static::databaseConnection()->prepare("SELECT * FROM student WHERE id LIKE ?");
-            $sql->execute([$id]) ;
+            $sql->execute(["%$id%"]); 
+            return $sql->fetchAll(PDO::FETCH_ASSOC);
         }
 
         public function All(){
-            $sql = static::databaseConnection()->prepare('SELECT * FROM student');
-            $sql->excute([]);
+            return static::databaseConnection()->query("SELECT * FROM student")->fetchAll();
         }
 
         

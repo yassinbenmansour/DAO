@@ -2,4 +2,4 @@
       require "./app/Models/Students.php";
 
       $Student = new Student();
-      var_dump($Student->search(5));
+      var_dump($Student->All());
